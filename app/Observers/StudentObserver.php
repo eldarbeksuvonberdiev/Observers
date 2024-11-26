@@ -20,15 +20,15 @@ class StudentObserver
      */
     public function updated(Student $student): void
     {
-        //
+        Log::info('A student with id ' . $student->id . '. Has been successfuly updated at time: '. now());
     }
-
+    
     /**
      * Handle the Student "deleted" event.
      */
     public function deleted(Student $student): void
     {
-        //
+        Log::info('A student with id ' . $student->id . '. Has been successfuly deleted at time: '. now());
     }
 
     /**

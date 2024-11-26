@@ -67,6 +67,8 @@
                             <th>Birth date</th>
                             <th>Age</th>
                             <th>Field</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,6 +79,17 @@
                                 <td>{{ $student->birth_day }}</td>
                                 <td>{{ $student->age }}</td>
                                 <td>{{ $student->field }}</td>
+                                <td>
+                                    <a href="{{ route('student.edit',$student->id) }}" class="btn btn-warning">Edit</a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('student.destroy', $student->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

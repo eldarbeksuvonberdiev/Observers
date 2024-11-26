@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::resource('student',StudentController::class);
+Route::resource('agent',StudentController::class);

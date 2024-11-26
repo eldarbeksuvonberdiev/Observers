@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\Agent;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StudentStoreRequest;
-use App\Http\Requests\StudentUpdateRequest;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class AgentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $students = Student::orderBy('id','desc')->get();
-        return view('student.index',compact('students'));
+        //
     }
 
     /**
@@ -30,16 +27,15 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StudentStoreRequest $request)
+    public function store(Request $request)
     {
-        Student::create($request->all());
-        return back();
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show(Agent $agent)
     {
         //
     }
@@ -47,25 +43,24 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit(Agent $agent)
     {
-        return view('student.edit',compact('student'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StudentUpdateRequest $request, Student $student)
+    public function update(Request $request, Agent $agent)
     {
-        
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Agent $agent)
     {
-        $student->delete();
-        return back();
+        //
     }
 }
