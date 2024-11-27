@@ -15,8 +15,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::orderBy('id','desc')->get();
-        return view('student.index',compact('students'));
+        // $students = Student::orderBy('id','desc')->get();
+        // return view('student.index',compact('students'));
     }
 
     /**
@@ -32,8 +32,8 @@ class StudentController extends Controller
      */
     public function store(StudentStoreRequest $request)
     {
-        Student::create($request->all());
-        return back();
+        // Student::create($request->all());
+        // return back();
     }
 
     /**
@@ -49,7 +49,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('student.edit',compact('student'));
+        // return view('student.edit',compact('student'));
     }
 
     /**
@@ -65,7 +65,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $student->delete();
-        return back();
+        // $student->delete();
+        // return back();
     }
 }

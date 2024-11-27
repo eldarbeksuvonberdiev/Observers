@@ -13,7 +13,9 @@ class AgentController extends Controller
      */
     public function index()
     {
-        //
+        $agents = Agent::where('parent_id',0)->orderBy('id','desc')->paginate(10);
+        $parent_id = 0;
+        return view('agent.index',compact('agents','parent_id'));
     }
 
     /**
@@ -29,7 +31,18 @@ class AgentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //  
+    }
+
+    public function storeBy(Request $request,int $id)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ]);
+        $data['parent_id'] = $id;
+        Agent::create($data);
+        return back()->with(['message' => 'Agent is successfully created','status' => 'success']);
     }
 
     /**
@@ -53,7 +66,23 @@ class AgentController extends Controller
      */
     public function update(Request $request, Agent $agent)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ]);
+        $agent->update($data);
+        return back()->with(['message' => 'Agent is successfully updated','status' => 'warning']);
+    }
+
+    public function deleteBy(Agent $agent){
+
+        if($agent->children->count() > 0){
+            foreach ($agent->children as $child) {
+                $this->deleteBy($child);
+                $child->delete();
+            }
+        }
+        
     }
 
     /**
@@ -61,6 +90,14 @@ class AgentController extends Controller
      */
     public function destroy(Agent $agent)
     {
-        //
+        $this->deleteBy($agent);
+        $agent->delete();
+        return back()->with(['message' => 'Agent is successfully deleted','status' => 'danger']);
+    }
+
+    public function subs(Agent $agent){
+        $agents = Agent::where('parent_id',$agent->id)->orderBy('id','desc')->paginate(10);
+        $parent_id = $agent->id;
+        return view('agent.index',compact('agents','parent_id'));
     }
 }

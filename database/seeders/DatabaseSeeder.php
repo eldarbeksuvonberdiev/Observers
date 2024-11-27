@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Agent;
+use App\Models\AgentProduct;
+use App\Models\Product;
 use App\Models\Student;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -31,11 +33,26 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i=1; $i < 100; $i++) { 
+        for ($i=1; $i <= 100; $i++) { 
+            $a = rand(0,($i-1));
             Agent::create([
-                'parent_id' => $i % 3 != 0 ? 0 : rand(0,($i - 1)),
-                'name' => $i % 3 != 0 ? 'Child' : 'Child'.$i,
+                'parent_id' => $i == 1 ? 0 : $a,
+                'name' => $i == 1 ? 'Parent agent' : ($a == 0 ? 'Parent agent' : 'Child agent'),
                 'phone' => '+99890123456'.$i
+            ]);
+        }
+
+        for ($i=1; $i <= 10; $i++) { 
+            Product::create([
+                'name' => 'Product' . $i
+            ]);
+        }
+
+        for ($i=0; $i < 1000; $i++) { 
+            AgentProduct::create([
+                'agent_id' => rand(1,100),
+                'product_id' => rand(1,10),
+                'price' => rand(1000,15000)
             ]);
         }
     }
