@@ -26,9 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Student::observe(StudentObserver::class);
-        Agent::observe(AgentObserver::class);
-        Product::observe(ProductObserver::class);
+        // Student::observe(StudentObserver::class);
+        // Agent::observe(AgentObserver::class);
+        // Product::observe(ProductObserver::class);
         Paginator::useBootstrapFive();
         Paginator::useBootstrapFour();
     }

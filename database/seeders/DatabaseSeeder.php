@@ -48,9 +48,9 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i=0; $i < 1000; $i++) { 
+        for ($i=1; $i <= 100; $i++) { 
             AgentProduct::create([
-                'agent_id' => rand(1,100),
+                'agent_id' => $i,
                 'product_id' => rand(1,10),
                 'price' => rand(1000,15000)
             ]);

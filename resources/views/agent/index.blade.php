@@ -29,7 +29,20 @@
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Phone</label>
                                     <input type="number" class="form-control" id="phone" name="phone"
-                                        placeholder="+998...">
+                                    placeholder="+998...">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="product" class="form-label">Product</label>
+                                    <select class="form-select" id="product" name="product"  aria-label="Default select example">
+                                        @foreach ($products as $product)
+                                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="price" class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="price" name="price"
+                                    placeholder="1500...">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -74,8 +87,8 @@
                                     Update
                                 </button>
 
-                                <div class="modal fade" id="update{{ $agent->id }}" tabindex="-1" aria-labelledby="update{{ $agent->id }}"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="update{{ $agent->id }}" tabindex="-1"
+                                    aria-labelledby="update{{ $agent->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -96,6 +109,11 @@
                                                         <label for="phone" class="form-label">Phone</label>
                                                         <input type="number" class="form-control" id="phone"
                                                             name="phone" value="{{ $agent->phone }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="price" class="form-label">Product Price</label>
+                                                        <input type="number" class="form-control" id="price"
+                                                            name="price" value="{{ $agent->agentProduct->price }}">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

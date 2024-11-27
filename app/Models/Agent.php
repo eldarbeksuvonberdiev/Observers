@@ -19,4 +19,8 @@ class Agent extends Model
     public function parent(){
         return $this->belongsTo(Agent::class,'parent_id');
     }
+
+    public function agentProduct(){
+        return $this->hasOne(AgentProduct::class,'agent_id');
+    }
 }
